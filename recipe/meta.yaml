@@ -1,5 +1,5 @@
 {% set name = "puremagic" %}
-{% set version = "1.4" %}
+{% set version = "1.8" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/cdgriffith/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 10c5945014c34cf58155b4ec876abba3697d43a69f29db6fa4501298cbb7e6db
+  sha256: 31e3ea095139c94de79b8d686637e0878dd7e59a602fee10dd2084c89396cec8
 
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
