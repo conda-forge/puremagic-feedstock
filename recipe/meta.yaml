@@ -11,22 +11,26 @@ source:
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install .  -vv --no-deps --no-build-isolation
+  script:
+    - {{ PYTHON }} -c "__import__('pathlib').Path('puremagic/py.typed').touch()"
+    - {{ PYTHON }} -m pip install .  -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
-    - python >=3.8
+    - python >=3.7
   run:
-    - python >=3.8
+    - python >=3.7
 
 test:
   requires:
+    - mypy
     - pip
   imports:
     - puremagic
   commands:
     - pip check
+    - mypy -p puremagic
 
 about:
   home: https://github.com/cdgriffith/puremagic
