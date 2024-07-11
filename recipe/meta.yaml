@@ -1,4 +1,4 @@
-{% set version = "1.25" %}
+{% set version = "1.26" %}
 
 package:
   name: puremagic
@@ -6,27 +6,31 @@ package:
 
 source:
   url: https://pypi.org/packages/source/p/puremagic/puremagic-{{ version }}.tar.gz
-  sha256: 671c801158376c5f4a43c805edf7ef87d59337e243b03a8ce23d151a7a0e9c4d
+  sha256: ea875d3fdd6a29134bdd035cdfeca177fed575b6bdd68acd86f83ca284edc027
 
 build:
   noarch: python
   number: 0
-  script: {{ PYTHON }} -m pip install .  -vv --no-deps --no-build-isolation
+  script:
+    - {{ PYTHON }} -c "__import__('pathlib').Path('puremagic/py.typed').touch()"
+    - {{ PYTHON }} -m pip install .  -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
-    - python >=3.8
+    - python >=3.7
   run:
-    - python >=3.8
+    - python >=3.7
 
 test:
   requires:
+    - mypy
     - pip
   imports:
     - puremagic
   commands:
     - pip check
+    - mypy -p puremagic
 
 about:
   home: https://github.com/cdgriffith/puremagic
