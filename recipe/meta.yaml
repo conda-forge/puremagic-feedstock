@@ -11,9 +11,7 @@ source:
 build:
   noarch: python
   number: 0
-  script:
-    - {{ PYTHON }} -c "__import__('pathlib').Path('puremagic/py.typed').touch()"
-    - {{ PYTHON }} -m pip install .  -vv --no-deps --no-build-isolation
+  script: {{ PYTHON }} -m pip install .  -vv --no-deps --no-build-isolation
 
 requirements:
   host:
