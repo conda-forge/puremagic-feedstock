@@ -1,4 +1,4 @@
-{% set version = "1.28" %}
+{% set version = "1.29" %}
 
 package:
   name: puremagic
@@ -6,11 +6,11 @@ package:
 
 source:
   url: https://pypi.org/packages/source/p/puremagic/puremagic-{{ version }}.tar.gz
-  sha256: 195893fc129657f611b86b959aab337207d6df7f25372209269ed9e303c1a8c0
+  sha256: 67c115db3f63d43b13433860917b11e2b767e5eaec696a491be2fb544f224f7a
 
 build:
   noarch: python
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install .  -vv --no-deps --no-build-isolation
 
 requirements:
