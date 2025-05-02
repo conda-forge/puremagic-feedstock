@@ -11,7 +11,6 @@ Summary: Pure python implementation of magic file detection
 
 Pure python implementation of identifying files based off their magic numbers
 
-
 Current build status
 ====================
 
