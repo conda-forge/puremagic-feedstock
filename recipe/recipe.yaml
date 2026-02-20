@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "1.30"
+  version: "2.0.0"
 
 package:
   name: puremagic
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/p/puremagic/puremagic-${{ version }}.tar.gz
-  sha256: f9ff7ac157d54e9cf3bff1addfd97233548e75e685282d84ae11e7ffee1614c9
+  sha256: 224fe42b6b3467276a45914e12b5f40905dea0e87963adbe5289667e7c607851
 
 build:
   number: 0
