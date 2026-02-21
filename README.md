@@ -3,11 +3,13 @@ About puremagic-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/puremagic-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/cdgriffith/puremagic
+Home: https://pypi.org/project/puremagic
 
 Package license: MIT
 
 Summary: Pure python implementation of magic file detection
+
+Development: https://github.com/cdgriffith/puremagic
 
 Pure python implementation of identifying files based off their magic numbers
 
