@@ -5,8 +5,8 @@ context:
   version: "2.0.0"
   python_check_max: "3.14"
   python_min: "3.12"
-  # the tests are large, and have weird, sometimes intentionally misbehaved binaries
-  run_test: false
+  # the test fixtures are large, and have weird, sometimes intentionally misbehaved binaries
+  run_full_test_suite: false
 
 package:
   name: puremagic
@@ -17,10 +17,13 @@ source:
   sha256: 224fe42b6b3467276a45914e12b5f40905dea0e87963adbe5289667e7c607851
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script:
     - ${{ PYTHON }} -m pip install .  -vv --no-deps --no-build-isolation --disable-pip-version-check
+  python:
+    entry_points:
+      - puremagic = puremagic.main:command_line_entry
 
 requirements:
   host:
@@ -38,7 +41,14 @@ tests:
       python_version:
         - ${{ python_min }}.*
         - ${{ python_check_max }}.*
-  - if: run_tests
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - puremagic --help
+      - puremagic --version
+      - puremagic --version | ${{ "grep -iE" if unix else "findstr /r /c /i" }} "${{ version | replace('.', '\\.') }}"
+  - if: run_full_test_suite
     then:
       files:
         source:
