@@ -2,7 +2,11 @@
 schema_version: 1
 
 context:
-  version: "1.30"
+  version: "2.0.0"
+  python_check_max: "3.14"
+  python_min: "3.12"
+  # the tests are large, and have weird, sometimes intentionally misbehaved binaries
+  run_test: false
 
 package:
   name: puremagic
@@ -10,7 +14,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/p/puremagic/puremagic-${{ version }}.tar.gz
-  sha256: f9ff7ac157d54e9cf3bff1addfd97233548e75e685282d84ae11e7ffee1614c9
+  sha256: 224fe42b6b3467276a45914e12b5f40905dea0e87963adbe5289667e7c607851
 
 build:
   number: 0
@@ -23,6 +27,7 @@ requirements:
     - pip
     - python ${{ python_min }}.*
     - setuptools
+    - setuptools-scm >=6.2
   run:
     - python >=${{ python_min }}
 
@@ -32,19 +37,26 @@ tests:
       pip_check: true
       python_version:
         - ${{ python_min }}.*
-        - 3.13.*
-  - requirements:
-      run:
-        - mypy
-        - python ${{ python_min }}.*
-    script:
-      - mypy -p puremagic
+        - ${{ python_check_max }}.*
+  - if: run_tests
+    then:
+      files:
+        source:
+          - test/
+      requirements:
+        run:
+          - pytest-cov
+          - python ${{ python_min }}.*
+      script:
+        - coverage run --source=puremagic --branch -m pytest -vv --tb=long --color=yes
+        - coverage report --show-missing --skip-covered --fail-under=76
 
 about:
   license: MIT
   license_file: LICENSE
   summary: Pure python implementation of magic file detection
-  homepage: https://github.com/cdgriffith/puremagic
+  homepage: https://pypi.org/project/puremagic
+  repository: https://github.com/cdgriffith/puremagic
   description: |
     Pure python implementation of identifying files based off their magic numbers
 
