@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "2.0.1"
+  version: "2.0.2"
   python_check_max: "3.14"
   python_min: "3.12"
   # the test fixtures are large, and have weird, sometimes intentionally misbehaved binaries
@@ -14,7 +14,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/p/puremagic/puremagic-${{ version }}.tar.gz
-  sha256: e43ac53d7577aeef466c7527ba49ae73b6107cc2f36711659d21be8f46000954
+  sha256: 3ebc28f9380e19dbd8179aeaa08e9692334d71194fc6e5865818770d2bee44c8
 
 build:
   number: 0
